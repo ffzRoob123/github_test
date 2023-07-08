@@ -1,0 +1,231 @@
+<html>
+  <body>
+    <div class="header">
+      <img src="../../assets/cat.png" />
+      <nz-select ngModel="Product" nzBorderless>
+        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+        <nz-option nzValue="Product" nzLabel="Product" nzHide></nz-option>
+      </nz-select>
+      <span>Team</span>
+      <span>Enterprise</span>
+      <nz-select ngModel="Explore" nzBorderless>
+        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+        <nz-option nzValue="Explore" nzLabel="Explore" nzHide></nz-option>
+      </nz-select>
+      <span>Marketplace</span>
+      <nz-select ngModel="Pricing" nzBorderless>
+        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+        <nz-option nzValue="Pricing" nzLabel="Pricing" nzHide></nz-option>
+      </nz-select>
+      <input nzinput placeholder="Search GitHub" />
+      <a href="#">Sign in</a>
+      <a href="#" class="sign-up">Sign up</a>
+    </div>
+    <div class="box">
+      <div class="left">
+        <div class="type">
+          <h1><strong>Types</strong></h1>
+          <li>
+            <a
+              href="javascript:void(0)"
+              (click)="addQueryElement('Apps')"
+              id="apps"
+              >{{ types[0] }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="javascript:void(0)"
+              (click)="addQueryElement('Actions')"
+              id="actions"
+              >{{ types[1] }}</a
+            >
+          </li>
+        </div>
+        <div class="category">
+          <h1><strong>Categories</strong></h1>
+          <li>
+            <a
+              href="javascript:void(1)"
+              (click)="addQueryElement('Api management')"
+              id="api management"
+              >{{ categories[0] }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="javascript:void(1)"
+              (click)="addQueryElement('Chat')"
+              id="chat"
+              >{{ categories[1] }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="javascript:void(1)"
+              (click)="addQueryElement('Code quality')"
+              id="code quality"
+              >{{ categories[2] }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="javascript:void(1)"
+              (click)="addQueryElement('Code review')"
+              id="code review"
+              >{{ categories[3] }}</a
+            >
+          </li>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="search">
+          <input
+            nz-input
+            placeholder="Search for apps and actions"
+            [(ngModel)]="searchValue"
+            (ngModelChange)="search()"
+          />
+          <!-- (keyup.enter)="search()" -->
+          <!-- <button nz-button nzType="primary" (click)="search()">search</button> -->
+          <nz-select
+            [(ngModel)]="searchWay"
+            (ngModelChange)="changeSearchWay()"
+          >
+            <nz-option nzValue="Best Match" nzLabel="Best Match"></nz-option>
+            <nz-option
+              nzValue="Recently Added"
+              nzLabel="Recently Added"
+            ></nz-option>
+            <nz-option
+              nzValue="Most installed/starred"
+              nzLabel="Most installed/starred"
+            ></nz-option>
+          </nz-select>
+        </div>
+        <div class="content">
+          <h1>{{ queryTitle }}</h1>
+          <h3>
+            {{
+              queryTitle === "Apps and Actions"
+                ? ""
+                : queryTitle === "Apps"
+                ? appContent
+                : actionContent
+            }}
+          </h3>
+          <span
+            ><strong>{{ totalNum }}results</strong> filtered by</span
+          >
+          <span
+            *ngFor="let element of queryList"
+            class="inline-flex items-center rounded-full bg-indigo-100 py-0.5 pl-2.5 pr-1 ml-2 text-sm font-medium text-cyan-700"
+          >
+            {{ element }}
+            <button
+              type="button"
+              (click)="removeElement(element)"
+              class="ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-cyan-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none"
+            >
+              <svg
+                class="h-2.5 w-2.5"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 8 8"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-width="1.25"
+                  d="M1 1l6 6m0-6L1 7"
+                />
+              </svg>
+            </button>
+          </span>
+        </div>
+
+        <h1>{{ queryTitle }}</h1>
+        <div class="app">
+          <div *ngFor="let item of data">
+            <a href="{{ item.href }}">
+              <div class="img"><img [src]="item.img" /></div>
+              <div class="contain">
+                <h3>{{ item.title }}</h3>
+                <p>
+                  {{ item.provider }}
+                  <span>
+                    <svg
+                      aria-hidden="true"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      version="1.1"
+                      data-view-component="true"
+                      class="octicon octicon-verified color-fg-accent ml-1"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                      ></path>
+                    </svg>
+                  </span>
+                </p>
+
+                <p>{{ item.content }}</p>
+                <div *ngIf="!item.isRecommend; else elseBlock">
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-download"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"
+                      ></path>
+                      <polyline points="7 11 12 16 17 11"></polyline>
+                      <line x1="12" y1="4" x2="12" y2="16"></line>
+                    </svg>
+                  </span>
+                  <span>{{
+                    item.installed! >= 1000 && item.installed! < 10000
+                      ? (item.installed! / 1000).toFixed(1) + "k"
+                      : item.installed! >= 10000
+                      ? (item.installed! / 10000).toFixed(1) + "w"
+                      : item.installed! + " installs"
+                  }}</span>
+                </div>
+                <ng-template #elseBlock>
+                  <span class="recommend">Recommended</span>
+                </ng-template>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- <div class="img"><img src="../../assets/2.png" /></div>
+          <div>2</div>
+          <div class="img"><img src="../../assets/3.png" /></div>
+          <div>3</div>
+          <div class="img"><img src="../../assets/4.png" /></div>
+          <div>4</div>
+          <div class="img"><img src="../../assets/5.png" /></div>
+          <div>5</div>
+          <div class="img"><img src="../../assets/6.jpg" /></div>
+          <div>6</div>
+          <div class="img"><img src="../../assets/7.png" /></div>
+          <div>7</div>
+          <div class="img"><img src="../../assets/8.jpg" /></div>
+          <div>8</div> -->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+.box {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  /* grid-template-columns: 360px 800px; */
+  grid-template-columns: 1fr 3.5fr;
+  gap: 20px;
+  list-style: none;
+}
+.header {
+  background-color: black;
+  height: 72px;
+  line-height: 72px;
+}
+.header img {
+  padding-left: 60px;
+  padding-right: 10px;
+  display: inline-block;
+}
+.header nz-select,
+nz-option,
+.header span {
+  color: rgb(255, 255, 255);
+}
+/* 我们还需要在样式前面加上特殊的标识
+类名等 前加 ::ng-deep；
+类名等 前加 :root；
+类名等 前加 :host /deep/；
+注意：上面三种方法可分别尝试一下，不同情况下其中之一会生效。 */
+::ng-deep .ant-select-arrow {
+  color: #fff;
+}
+::ng-deep .search .ant-select-arrow svg {
+  color: #000;
+}
+::ng-deep .ant-select-arrow .anticon > svg {
+  margin-top: 5px;
+}
+.header span {
+  padding: 0 32px;
+}
+.header input {
+  height: 36px;
+  width: 350px;
+  color: #000;
+  padding-left: 15px;
+  margin-left: 100px;
+  border-radius: 5px;
+}
+.header a {
+  color: #fff;
+  margin-left: 30px;
+}
+.header .sign-up {
+  border: 1px solid #fff;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+.left {
+  margin: 0 auto;
+  padding-left: 100px;
+}
+.left h1 {
+  margin-bottom: 20px;
+}
+.left a {
+  display: block;
+  /* margin-bottom: 10px;
+  margin-left: 5px; */
+  height: 37px;
+  line-height: 17px;
+  padding: 8px 16px;
+}
+.left a:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+  color: rgb(12, 179, 239);
+}
+.type a:focus {
+  background-color: rgb(9, 105, 218);
+  color: #fff;
+}
+.type {
+  background-color: #fff;
+  height: 200px;
+  width: 220px;
+  padding: 20px 20px 20px 20px;
+  margin-top: 68px;
+}
+.category {
+  background-color: #fff;
+  height: 200px;
+  width: 220px;
+  padding: 20px 20px 20px 20px;
+}
+.category a:focus {
+  background-color: rgb(9, 105, 218);
+  color: rgb(255, 255, 255);
+}
+.main {
+  background-color: rgb(255, 255, 255);
+  margin-top: 20px;
+}
+.main h1 {
+  font-size: 20px;
+  font-weight: 700;
+  /* margin-top: 20px; */
+}
+.search input {
+  width: 500px;
+  height: 45px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+.search button {
+  height: 45px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 60px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #d9d9d9;
+}
+.search nz-select {
+  margin-left: 10px;
+}
+::ng-deep
+  .ant-select-single:not(.ant-select-customize-input)
+  .ant-select-selector {
+  height: 45px;
+  line-height: 45px;
+  padding: 7px 10px;
+  width: 100%;
+  border-radius: 5px;
+}
+.content {
+  margin-bottom: 20px;
+}
+.content h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.content h3 {
+  font-size: 14px;
+  margin: 10px 0;
+}
+/* .content span {
+  margin-bottom: 20px;
+} */
+.app {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 20px;
+}
+.app .contain {
+  float: right;
+  height: auto;
+  width: 300px;
+  background-color: white;
+  margin-bottom: 24px;
+  margin-left: 16px;
+  margin-right: 40px;
+  /* border: 1px solid black; */
+}
+.contain h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+.contain p:nth-child(2) {
+  display: inline-flex;
+  flex-flow: row wrap;
+}
+.contain p span svg {
+  margin-top: 2px;
+}
+.contain span {
+  display: inline-flex;
+  flex-flow: row wrap;
+}
+.contain span svg {
+  padding-top: 5px;
+}
+.app .img {
+  display: inline-block;
+  border-radius: 50%;
+  border-style: none;
+  width: 62px;
+  background-color: aqua;
+}
+.app .img img {
+  border-radius: 50%;
+}
+.recommend {
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 0px 2px;
+}
